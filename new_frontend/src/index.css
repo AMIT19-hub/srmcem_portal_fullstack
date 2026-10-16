@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Segoe UI", sans-serif;
+  --color-portal-navy: #111827;
+  --color-portal-red: #c6283d;
+  --color-portal-canvas: #f6f7fb;
+  --color-portal-border: #e2e8f0;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: #f6f7fb;
+    color: #253044;
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  button, input, select, textarea { font: inherit; }
+  button:not(:disabled) { cursor: pointer; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid rgb(79 70 229 / 32%);
+    outline-offset: 2px;
+  }
+  ::selection { background: #c7d2fe; color: #111827; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-enter { animation: rise-in .55s cubic-bezier(.2,.7,.2,1) both; }
+  .motion-delay-1 { animation-delay: .1s; }
+  .motion-delay-2 { animation-delay: .2s; }
+  .dashboard-enter { animation: rise-in .35s cubic-bezier(.2,.7,.2,1) both; }
+  .menu-enter { animation: menu-in .16s ease-out both; transform-origin: top right; }
+  .dialog-enter { animation: dialog-in .18s ease-out both; }
+  @keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes menu-in { from { opacity: 0; transform: translateY(-4px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes dialog-in { from { opacity: 0; transform: translateY(6px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+}
+
+button, a, [role="button"] { -webkit-tap-highlight-color: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
